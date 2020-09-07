@@ -17,9 +17,46 @@ Construa registros para atender as essas necessidades iniciais do diretor, obser
 using namespace std;
 
 struct Professores {
-	char nome[]
+	char nome[TAM];
+	int idade[TAM];
+	int cpf[TAM];
+	int telefone[TAM];
+	char email[TAM];
+	char formacao[TAM];
+	Enderecos endereco;
 };
 
+struct Alunos {
+	char nome[TAM];
+	int idade[TAM];
+	int cpf[TAM];
+	int telefone[TAM];
+	char email[TAM];
+	Enderecos endereco;
+};
+
+struct Cursos {
+	char nome[TAM];
+	int codigo;
+
+};
+
+struct Disciplina {
+	int codigo;
+	char nome[TAM];
+	int carga_horaria[TAM];
+	Professores professor;
+	Alunos aluno
+    
+};
+logradouro, número, bairro, cidade e estado
+struct Enderecos {
+	char logradouro[TAM];
+	int numero[TAM];
+	char bairro[TAM];
+	char cidade[TAM];
+	char estado[TAM];
+};
 int main() {
 	
 	
