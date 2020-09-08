@@ -21,21 +21,21 @@ using namespace std;
 struct Professores {
 	int codigo;
 	char nome[TAM];
-	int idade[TAM];
-	int cpf[TAM];
-	int telefone[TAM];
+	char idade[TAM];
+	char cpf[TAM];
+	char telefone[TAM];
 	char email[TAM];
 	char formacao[TAM];
-//	Enderecos endereco;
+
 };
 
 struct Alunos {
 	char nome[TAM];
-	int idade[TAM];
-	int cpf[TAM];
-	int telefone[TAM];
-	char email[TAM];
-//	Enderecos endereco;
+	char idade[4];
+	char cpf[15];
+	char telefone[10];
+	char email[25];
+
 };
 
 struct Cursos {
@@ -44,12 +44,11 @@ struct Cursos {
 
 };
 
-struct Disciplina {
+struct Disciplinas {
 	int codigo;
 	char nome[TAM];
 	int carga_horaria[TAM];
-	Professores professor;
-	//Alunos aluno;
+	
     
 };
 
@@ -62,8 +61,8 @@ struct Enderecos {
 };
 
 struct Notas {
-	int nota1;
-	int nota2;
+	float nota1;
+	float nota2;
 	int falta;
 };
 
@@ -79,53 +78,79 @@ void menu(){
     cout << "\t6 - Sair\n";
 }
 
-Alunos cadastraaluno(){
+
+int cadastraaluno(Alunos aluno[], int qtdalunos){
 	
-	Alunos aluno;
+
 	int Codigoprofessor, Codigocurso, Codigodisclipina;
 	cout << "\t\t\nCadastro do aluno(a)" << endl;
 	cout << "\tDigite o nome: ";
-	cin  >> aluno.nome << endl;
-	cout << "\tDigite o CPF: ";
-	cin  >> aluno.cpf << endl;
-	cout << "\tDigite o idade: ";
-	cin  >> aluno.idade << endl;
-	cout << "\tDigite o email: ";
-	cin  >> aluno.email << endl;
-	cout << "\tDigite o telefone: ";
-	cin  >> aluno.telefone << endl;
-	cout << "\tDigite o codigo do professor(a): ";
-	cin  >> Codigoprofessor << endl;
-	cout << "\tDigite o codigo do curso: ";
-	cin  >> Codigocurso << endl;
-	cout << "\tDigite o codigo do disclipina: ";
-	cin  >> Codigodisclipina << endl;
+	cin  >> aluno[qtdalunos].nome;
+	cout << "\n\tDigite o CPF: ";
+	cin  >> aluno[qtdalunos].cpf;
+	cout << "\n\tDigite o idade: ";
+	cin  >> aluno[qtdalunos].idade;
+	cout << "\n\tDigite o email: ";
+	cin  >> aluno[qtdalunos].email;
+	cout << "\n\tDigite o telefone: ";
+	cin  >> aluno[qtdalunos].telefone;
+	
+	qtdalunos++;
+    return qtdalunos;
+	
+}
+
+int listaalunos(Alunos aluno[], int qtd){
+	cout << "----------- LISTA DE ALUNOS -----------\n";
+	for(int i =1; i <= qtd; i++){
+		cout << aluno[i].nome << " | " << aluno[i].idade << " | " << aluno[i].cpf << " | " << aluno[i].email << " | " << aluno[i].telefone << endl;
+	}
+	
+	
+}
+
+int BuscarAluno(Alunos aluno[], int qtd){
+	
+	int num;
+	cout << "Digite o CPF ou Nome: ";
+	cin >> num;
+	
+	for(int i=1; i <= qtd; i++ ){
+		if(num == aluno[i].nome || num == aluno[i].cpf){
+			return i;
+		}
+		return -1;
+	}
+}
+
+int ImprimirBuscarAluno(alunos alunos){
+	cout << ""
 }
 
 
 int main() {
+	Alunos aluno[TAM];
+	int qtdalunos = 0;
+	int posicao = 0;
+int opcao;
+
 	
-	Professores professor[] = {
-	{1, Alesson, 19, 123456789, 66666666, alesson@gmail.com, SI},
-	{2, Joao, 25, 987654321, 77777777, joao@gmail.com, Geografia},
-	{3, pedro, 35, 456123789, 88888888, pedro@gmail.com, historia}
-	}
-	
-	int opcao;
     do{
+    	
     	menu();
     	cout << "\t=>";
     	cin >> opcao;
     	system("cls");
     	
     	switch(opcao){
-    		case 1: 
+    		case 1: listaalunos(aluno, qtdalunos);
     			break;
-    		case 2: 
+    		case 2: qtdalunos = cadastraaluno(aluno, qtdalunos);
     			break;
     		case 3: 
     			break;
-    		case 4: 
+    		case 4: posicao = buscarAluno(aluno, qtdaluno);
+    		        ImprimirBuscarAluno(aluno[posicao]);
     			break;
     		case 5: 
     			break;
