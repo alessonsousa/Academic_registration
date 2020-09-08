@@ -30,6 +30,7 @@ struct Professores {
 };
 
 struct Alunos {
+	int codigo;
 	char nome[TAM];
 	char idade[4];
 	char cpf[15];
@@ -84,7 +85,9 @@ int cadastraaluno(Alunos aluno[], int qtdalunos){
 
 	int Codigoprofessor, Codigocurso, Codigodisclipina;
 	cout << "\t\t\nCadastro do aluno(a)" << endl;
-	cout << "\tDigite o nome: ";
+	cout << "\tDigite o codigo: ";
+	cin  >> aluno[qtdalunos].codigo;
+	cout << "\n\tDigite o nome: ";
 	cin  >> aluno[qtdalunos].nome;
 	cout << "\n\tDigite o CPF: ";
 	cin  >> aluno[qtdalunos].cpf;
@@ -97,36 +100,44 @@ int cadastraaluno(Alunos aluno[], int qtdalunos){
 	
 	qtdalunos++;
     return qtdalunos;
-	
+	system("cls");
 }
 
 int listaalunos(Alunos aluno[], int qtd){
-	cout << "----------- LISTA DE ALUNOS -----------\n";
-	for(int i =1; i <= qtd; i++){
-		cout << aluno[i].nome << " | " << aluno[i].idade << " | " << aluno[i].cpf << " | " << aluno[i].email << " | " << aluno[i].telefone << endl;
+	cout << "\t\t----------- LISTA DE ALUNOS -----------\n";
+	for(int i =0; i < qtd; i++){
+		cout << "-CODIGO-|-NOME-|-IDADE-|-CPF-|-EMAIL-|-TELEFONE-" << endl;
+		cout << aluno[i].codigo << "  |  " << aluno[i].nome << "  |  " << aluno[i].idade << "  |  " << aluno[i].cpf << "  |  " << aluno[i].email << "  |  " << aluno[i].telefone << endl;
 	}
-	
-	
+	system("pause");
+	system("cls");
 }
 
 int BuscarAluno(Alunos aluno[], int qtd){
 	
-	int num;
-	cout << "Digite o CPF ou Nome: ";
+	int num = 0;
+	cout << "Digite o codigo do aluno: ";
 	cin >> num;
 	
-	for(int i=1; i <= qtd; i++ ){
-		if(num == aluno[i].nome || num == aluno[i].cpf){
-			return i;
+	for(int i=0; i < qtd; i++){
+		
+		if(num == aluno[i].codigo){
+		cout << "Nome: " << aluno[i].nome << "  Idade: " << aluno[i].idade << "  Telefone: " << aluno[i].telefone << "\n\n";
+		
 		}
-		return -1;
+	
 	}
+	    system("pause");
+	    system("cls");
+	
+        
 }
 
-int ImprimirBuscarAluno(alunos alunos){
+int IncluirAluno(Alunos aluno[]){
+	
+	int dig;
 	cout << ""
 }
-
 
 int main() {
 	Alunos aluno[TAM];
@@ -149,8 +160,8 @@ int opcao;
     			break;
     		case 3: 
     			break;
-    		case 4: posicao = buscarAluno(aluno, qtdaluno);
-    		        ImprimirBuscarAluno(aluno[posicao]);
+    		case 4: BuscarAluno(aluno, qtdalunos);
+    		        
     			break;
     		case 5: 
     			break;
