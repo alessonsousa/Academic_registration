@@ -19,6 +19,7 @@ Construa registros para atender as essas necessidades iniciais do diretor, obser
 using namespace std;
 
 struct Professores {
+	int codigo;
 	char nome[TAM];
 	int idade[TAM];
 	int cpf[TAM];
@@ -105,8 +106,9 @@ Alunos cadastraaluno(){
 int main() {
 	
 	Professores professor[] = {
-	{}
-	
+	{1, Alesson, 19, 123456789, 66666666, alesson@gmail.com, SI},
+	{2, Joao, 25, 987654321, 77777777, joao@gmail.com, Geografia},
+	{3, pedro, 35, 456123789, 88888888, pedro@gmail.com, historia}
 	}
 	
 	int opcao;
