@@ -36,7 +36,9 @@ struct Alunos {
 	char cpf[15];
 	char telefone[10];
 	char email[25];
-
+   
+    Professores professor;
+   
 };
 
 struct Cursos {
@@ -79,11 +81,19 @@ void menu(){
     cout << "\t6 - Sair\n";
 }
 
+int buscaraluno2(Alunos aluno[], int qtde, int codigo){
+    for(int i=0; i<qtde; i++){
+        if(aluno[i].codigo==codigo){
+            return i;
+        }
+    }
+    return -1;
+}
 
 int cadastraaluno(Alunos aluno[], int qtdalunos){
 	
 
-	int Codigoprofessor, Codigocurso, Codigodisclipina;
+	int Codigoprofessor, Codigocurso, Codigodisclipina, v;
 	cout << "\t\t\nCadastro do aluno(a)" << endl;
 	cout << "\tDigite o codigo: ";
 	cin  >> aluno[qtdalunos].codigo;
@@ -97,13 +107,18 @@ int cadastraaluno(Alunos aluno[], int qtdalunos){
 	cin  >> aluno[qtdalunos].email;
 	cout << "\n\tDigite o telefone: ";
 	cin  >> aluno[qtdalunos].telefone;
+	cout << "Digite o codigo do professor(a): ";
+	cin >> Codigoprofessor;
+	v = buscaraluno2(aluno, qtdalunos, Codigoprofessor);
 	
 	qtdalunos++;
     return qtdalunos;
 	system("cls");
 }
 
-int listaalunos(Alunos aluno[], int qtd){
+
+
+int Exibiralunos(Alunos aluno[], int qtd){
 	cout << "\t\t----------- LISTA DE ALUNOS -----------\n";
 	for(int i =0; i < qtd; i++){
 		cout << "-CODIGO-|-NOME-|-IDADE-|-CPF-|-EMAIL-|-TELEFONE-" << endl;
@@ -122,8 +137,8 @@ int BuscarAluno(Alunos aluno[], int qtd){
 	for(int i=0; i < qtd; i++){
 		
 		if(num == aluno[i].codigo){
-		cout << "Nome: " << aluno[i].nome << "  Idade: " << aluno[i].idade << "  Telefone: " << aluno[i].telefone << "\n\n";
-		
+		cout << "Codigo: " << aluno[i].codigo <<  "Nome: " << aluno[i].nome << "  Email: " << aluno[i].email << "  Telefone: " << aluno[i].telefone << aluno[i].professor.nome;
+		return i;
 		}
 	
 	}
@@ -132,19 +147,37 @@ int BuscarAluno(Alunos aluno[], int qtd){
 	
         
 }
-
-int IncluirAluno(Alunos aluno[]){
+/*
+int IncluirAluno(Alunos aluno[], int qtd){
 	
 	int dig;
-	cout << ""
+	cout << "nDigite o codigo: ";
+	cin >> dig;
+	
+	for(int i=0; i < qtd; i++ ){
+		if(dig == aluno[i].codigo){
+			aluno[i] = ;
+		}
+	}
+	
+}*/
+
+
+ExibirAluno(Alunos aluno[], int qtd){
+
+
 }
+   
 
 int main() {
 	Alunos aluno[TAM];
 	int qtdalunos = 0;
 	int posicao = 0;
-int opcao;
-
+    int opcao;
+    Professores professor[] = {
+	{1,"Alesson", "19", "666666", "020103", "alesson@gmail.com", "sistema" },
+	{2,"Luiz", "19", "666666", "020103", "luiz@gmail.com", "Quimica" }
+	};
 	
     do{
     	
@@ -154,16 +187,16 @@ int opcao;
     	system("cls");
     	
     	switch(opcao){
-    		case 1: listaalunos(aluno, qtdalunos);
+    		case 1: ExibirAluno(aluno, qtdalunos);
     			break;
     		case 2: qtdalunos = cadastraaluno(aluno, qtdalunos);
     			break;
-    		case 3: 
+    		case 3: Exibiralunos(aluno, qtdalunos);
     			break;
     		case 4: BuscarAluno(aluno, qtdalunos);
     		        
     			break;
-    		case 5: 
+    		case 5:// IncluirAluno(aluno, qtdalunos);
     			break;
     
 		}
