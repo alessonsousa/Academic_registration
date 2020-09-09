@@ -36,7 +36,6 @@ struct Alunos {
 	char cpf[15];
 	char telefone[10];
 	char email[25];
-   
     Professores professor;
    
 };
@@ -81,26 +80,19 @@ void menu(){
     cout << "\t6 - Sair\n";
 }
 
-int buscaraluno2(Alunos aluno[], int qtde, int codigo){
-    for(int i=0; i<qtde; i++){
-        if(aluno[i].codigo==codigo){
-            return i;
-        }
-    }
-    return -1;
-}
 
-int cadastraaluno(Alunos aluno[], int qtdalunos){
+
+int cadastraaluno(Alunos aluno[],Professores professor[], int qtdprofessor, int qtdalunos){
 	
 
-	int Codigoprofessor, Codigocurso, Codigodisclipina, v;
+	int Codigoprofessor = 0, Codigocurso, Codigodisclipina, v;
 	cout << "\t\t\nCadastro do aluno(a)" << endl;
 	cout << "\tDigite o codigo: ";
 	cin  >> aluno[qtdalunos].codigo;
 	cout << "\n\tDigite o nome: ";
 	cin  >> aluno[qtdalunos].nome;
 	cout << "\n\tDigite o CPF: ";
-	cin  >> aluno[qtdalunos].cpf;
+	cin  >> aluno[qtdalunos].cpf; 
 	cout << "\n\tDigite o idade: ";
 	cin  >> aluno[qtdalunos].idade;
 	cout << "\n\tDigite o email: ";
@@ -109,7 +101,7 @@ int cadastraaluno(Alunos aluno[], int qtdalunos){
 	cin  >> aluno[qtdalunos].telefone;
 	cout << "Digite o codigo do professor(a): ";
 	cin >> Codigoprofessor;
-	v = buscaraluno2(aluno, qtdalunos, Codigoprofessor);
+	
 	
 	qtdalunos++;
     return qtdalunos;
@@ -147,23 +139,23 @@ int BuscarAluno(Alunos aluno[], int qtd){
 	
         
 }
-/*
+
 int IncluirAluno(Alunos aluno[], int qtd){
 	
 	int dig;
 	cout << "nDigite o codigo: ";
 	cin >> dig;
-	
 	for(int i=0; i < qtd; i++ ){
 		if(dig == aluno[i].codigo){
-			aluno[i] = ;
+			aluno[i] = aluno[i+1];
 		}
 	}
 	
-}*/
+	qtd--;
+	
+}
 
-
-ExibirAluno(Alunos aluno[], int qtd){
+ListaAluno(Alunos aluno[], int qtd){
 
 
 }
@@ -174,6 +166,7 @@ int main() {
 	int qtdalunos = 0;
 	int posicao = 0;
     int opcao;
+    int qtdprofessor = 2;
     Professores professor[] = {
 	{1,"Alesson", "19", "666666", "020103", "alesson@gmail.com", "sistema" },
 	{2,"Luiz", "19", "666666", "020103", "luiz@gmail.com", "Quimica" }
@@ -187,16 +180,16 @@ int main() {
     	system("cls");
     	
     	switch(opcao){
-    		case 1: ExibirAluno(aluno, qtdalunos);
+    		case 1: ListaAluno(aluno, qtdalunos);
     			break;
-    		case 2: qtdalunos = cadastraaluno(aluno, qtdalunos);
+    		case 2: qtdalunos = cadastraaluno(aluno, professor, qtdprofessor, qtdalunos);
     			break;
     		case 3: Exibiralunos(aluno, qtdalunos);
     			break;
     		case 4: BuscarAluno(aluno, qtdalunos);
     		        
     			break;
-    		case 5:// IncluirAluno(aluno, qtdalunos);
+    		case 5: IncluirAluno(aluno, qtdalunos);
     			break;
     
 		}
