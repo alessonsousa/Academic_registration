@@ -153,10 +153,9 @@ int IncluirAluno(Alunos aluno[], int qtd){
 	qtd--;
 	
 }
-
+int aux, aux2, aux3, aux4, faltas;float nota1, nota2;
 int MatricularAluno(Matriculas matricula[], Alunos aluno[], int qtd){
-  int aux, aux2, aux3, aux4, faltas;
-  float nota1, nota2;
+
   Disciplinas disciplina[] = {
 	{1, "SO", 80},
 	{2, "ED", 80}
@@ -176,28 +175,36 @@ int MatricularAluno(Matriculas matricula[], Alunos aluno[], int qtd){
   	for(int i=0; i < qtd; i++){
 		if(aux == aluno[i].codigo){
 		       cout << aluno[i].nome;
+		      
 		}
+	
     }
    cout << "\nDigite codigo diciplina: ";
    cin >> aux2;
   	for(int i=0; i < 3; i++){
 		if(aux2 == disciplina[i].codigo){
 		       cout << disciplina[i].nome;
+		       
 		}
+		
     }
     cout << "\nDigite codigo professor(a): ";
    cin >> aux3;
   	for(int i=0; i < 3; i++){
 		if(aux3 == professor[i].codigo){
 		       cout << professor[i].nome;
+		    
 		}
+	
     }
     cout << "\nDigite codigo curso: ";
    cin >> aux4;
   	for(int i=0; i < 3; i++){
 		if(aux4 == curso[i].codigo){
 		       cout << curso[i].nome;
+		       
 		}
+	
     }
     cout << "\nDigite nota 1: ";
     cin >> nota1;
@@ -205,12 +212,18 @@ int MatricularAluno(Matriculas matricula[], Alunos aluno[], int qtd){
     cin >> nota2;
     cout << "\nDigite a contidade de faltas: ";
     cin >> faltas;
+    
+    
+    
 }
 
 int ListaMatricula(){
-	
+
+	cout << "\n\t--------LISTAR MATRICULA-----------\n";
+	cout << " N  | ALUNO | PROFESSOR | DISCIPLINA | CURSO | N1 | N2 | TF | MEDIA | APROVACAO\n";
+
+	 
 }
-   
 
 int main() {
   Matriculas matricula[TAM];
@@ -219,12 +232,7 @@ int main() {
 	int posicao = 0;
     int opcao;
     int qtdprofessor = 2;
-    
-	
 
-	
-
-	
     do{
     	
     	menu();
