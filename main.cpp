@@ -1,5 +1,4 @@
 
-
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
@@ -36,22 +35,20 @@ struct Alunos {
 	char cpf[15];
 	char telefone[10];
 	char email[25];
-    Professores professor;
    
 };
 
 struct Cursos {
-	char nome[TAM];
 	int codigo;
-
+	char nome[TAM];
 };
 
 struct Disciplinas {
 	int codigo;
 	char nome[TAM];
 	int carga_horaria[TAM];
-	
-    
+	Cursos curso;
+  Professores professor;   
 };
 
 struct Enderecos {
@@ -62,30 +59,33 @@ struct Enderecos {
 	char estado[TAM];
 };
 
-struct Notas {
+struct Matriculas {
 	float nota1;
 	float nota2;
 	int falta;
+  Alunos aluno;
+  Disciplinas disciplina;
 };
 
 //FUNCAO QUE IMPRIME AS OPCOES DAS FUNCIONALIDADES DO PROGRAMA
 void menu(){
     cout << "\n\n\t\t----MENU ----"<<endl;
     cout << "\n\tDigite a opcao: "<<endl;
-    cout << "\t1 - Listar cadastros\n";
+    cout << "\t1 - Listar Matricula\n";
     cout << "\t2 - Cadastrar aluno(a)\n";
-    cout << "\t3 - Exibir aluno(a)\n";
-    cout << "\t4 - Buscar aluno(a)\n";
-    cout << "\t5 - Excluir aluno(a)\n";
-    cout << "\t6 - Sair\n";
+    cout << "\t3 - Matricular aluno(a)\n";
+    cout << "\t4 - Exibir aluno(a)\n";
+    cout << "\t5 - Buscar aluno(a)\n";
+    cout << "\t6 - Excluir aluno(a)\n";
+    cout << "\t7 - Sair\n";
 }
 
 
 
-int cadastraaluno(Alunos aluno[],Professores professor[], int qtdprofessor, int qtdalunos){
+int cadastraaluno(Alunos aluno[], int qtdalunos){
 	
 
-	int Codigoprofessor = 0, Codigocurso, Codigodisclipina, v;
+	int Codigoprofessor = 0, Codigocurso, Codigodisclipina;
 	cout << "\t\t\nCadastro do aluno(a)" << endl;
 	cout << "\tDigite o codigo: ";
 	cin  >> aluno[qtdalunos].codigo;
@@ -99,8 +99,7 @@ int cadastraaluno(Alunos aluno[],Professores professor[], int qtdprofessor, int 
 	cin  >> aluno[qtdalunos].email;
 	cout << "\n\tDigite o telefone: ";
 	cin  >> aluno[qtdalunos].telefone;
-	cout << "Digite o codigo do professor(a): ";
-	cin >> Codigoprofessor;
+ 
 	
 	
 	qtdalunos++;
@@ -111,7 +110,7 @@ int cadastraaluno(Alunos aluno[],Professores professor[], int qtdprofessor, int 
 
 
 int Exibiralunos(Alunos aluno[], int qtd){
-	cout << "\t\t----------- LISTA DE ALUNOS -----------\n";
+	cout << "\t\t----------- EXIBIR DE ALUNOS -----------\n";
 	for(int i =0; i < qtd; i++){
 		cout << "-CODIGO-|-NOME-|-IDADE-|-CPF-|-EMAIL-|-TELEFONE-" << endl;
 		cout << aluno[i].codigo << "  |  " << aluno[i].nome << "  |  " << aluno[i].idade << "  |  " << aluno[i].cpf << "  |  " << aluno[i].email << "  |  " << aluno[i].telefone << endl;
@@ -129,7 +128,7 @@ int BuscarAluno(Alunos aluno[], int qtd){
 	for(int i=0; i < qtd; i++){
 		
 		if(num == aluno[i].codigo){
-		cout << "Codigo: " << aluno[i].codigo <<  "Nome: " << aluno[i].nome << "  Email: " << aluno[i].email << "  Telefone: " << aluno[i].telefone << aluno[i].professor.nome;
+		cout << "Codigo: " << aluno[i].codigo <<  "Nome: " << aluno[i].nome << "  Email: " << aluno[i].email << "  Telefone: " << aluno[i].telefone << endl;
 		return i;
 		}
 	
@@ -155,22 +154,76 @@ int IncluirAluno(Alunos aluno[], int qtd){
 	
 }
 
-ListaAluno(Alunos aluno[], int qtd){
+int MatricularAluno(Matriculas matricula[], Alunos aluno[], int qtd){
+  int aux, aux2, aux3, aux4, faltas;
+  float nota1, nota2;
+  Disciplinas disciplina[] = {
+	{1, "SO", 80},
+	{2, "ED", 80}
+	};
+	Professores professor[] = {
+	{1,"Alesson", "19", "666666", "020103", "alesson@gmail.com", "sistema" },
+	{2,"Luiz", "19", "666666", "020103", "luiz@gmail.com", "Quimica" }
+};
+	Cursos curso[] = {
+	{1, "Sistemas de Informacao"},
+	{2, "Geografia"},
+	{3, "Quimica"}
+};
 
+  cout << "digite codigo aluno: ";
+  cin >> aux;
+  	for(int i=0; i < qtd; i++){
+		if(aux == aluno[i].codigo){
+		       cout << aluno[i].nome;
+		}
+    }
+   cout << "\nDigite codigo diciplina: ";
+   cin >> aux2;
+  	for(int i=0; i < 3; i++){
+		if(aux2 == disciplina[i].codigo){
+		       cout << disciplina[i].nome;
+		}
+    }
+    cout << "\nDigite codigo professor(a): ";
+   cin >> aux3;
+  	for(int i=0; i < 3; i++){
+		if(aux3 == professor[i].codigo){
+		       cout << professor[i].nome;
+		}
+    }
+    cout << "\nDigite codigo curso: ";
+   cin >> aux4;
+  	for(int i=0; i < 3; i++){
+		if(aux4 == curso[i].codigo){
+		       cout << curso[i].nome;
+		}
+    }
+    cout << "\nDigite nota 1: ";
+    cin >> nota1;
+    cout << "\nDigite nota 2: ";
+    cin >> nota2;
+    cout << "\nDigite a contidade de faltas: ";
+    cin >> faltas;
+}
 
+int ListaMatricula(){
+	
 }
    
 
 int main() {
+  Matriculas matricula[TAM];
 	Alunos aluno[TAM];
 	int qtdalunos = 0;
 	int posicao = 0;
     int opcao;
     int qtdprofessor = 2;
-    Professores professor[] = {
-	{1,"Alesson", "19", "666666", "020103", "alesson@gmail.com", "sistema" },
-	{2,"Luiz", "19", "666666", "020103", "luiz@gmail.com", "Quimica" }
-	};
+    
+	
+
+	
+
 	
     do{
     	
@@ -180,16 +233,18 @@ int main() {
     	system("cls");
     	
     	switch(opcao){
-    		case 1: ListaAluno(aluno, qtdalunos);
+    		case 1: ListaMatricula();
     			break;
-    		case 2: qtdalunos = cadastraaluno(aluno, professor, qtdprofessor, qtdalunos);
+    		case 2: qtdalunos = cadastraaluno(aluno, qtdalunos);
     			break;
-    		case 3: Exibiralunos(aluno, qtdalunos);
+      	case 3: MatricularAluno(matricula, aluno, qtdalunos);
     			break;
-    		case 4: BuscarAluno(aluno, qtdalunos);
+    		case 4: Exibiralunos(aluno, qtdalunos);
+    			break;
+    		case 5: BuscarAluno(aluno, qtdalunos);
     		        
     			break;
-    		case 5: IncluirAluno(aluno, qtdalunos);
+    		case 6: IncluirAluno(aluno, qtdalunos);
     			break;
     
 		}
@@ -197,34 +252,4 @@ int main() {
 	
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
